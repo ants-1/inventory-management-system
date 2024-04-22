@@ -17,6 +17,9 @@ def login(request):
 def edit_profile(request):
     return render(request, 'base/edit-profile.html')
 
+def equipment_list(request):
+    return render(request, 'base/equipment-list.html')
+
 def equipment_details(request):
     return render(request, 'base/equipment-details.html')
 

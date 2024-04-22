@@ -1,7 +1,58 @@
 {% extends 'main.html' %}
 
 {% block content %}
-<div>
-    <h1>Sign up</h1>
-</div>
+<style>
+    main {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    h1 {
+        padding: 50px 0;
+        color: #898585;
+        font-size: 55px;
+        font-weight: 300;
+        margin-bottom: 70px;
+    }
+</style>
+<main>
+    <h1>Sign Up</h1>
+    <div>
+        <label for="first-name">First Name</label>
+        <input type="text" name="first-name" id="first-name" required />
+    </div>
+    <div>
+        <label for="last-name">Last Name</label>
+        <input type="text" name="last-name" id="last-name" required />
+    </div>
+    <div>
+        <label for="email">Email Address</label>
+        <input type="email" name="email" id="email" required />
+    </div>
+    <div>
+        <label for="role">Role Description</label>
+        <select name="role" id="role" required>
+            <option value="" disabled selected>Select Role</option>
+            <option value="student">Student</option>
+            <option value="admin">Admin</option>
+        </select>
+    </div>
+    <div>
+        <label for="username">Create Username</label>
+        <input type="text" name="username" id="username" required />
+    </div>
+    <div>
+        <label for="password">Create Password</label>
+        <input type="password" name="password" id="password" required />
+    </div>
+    <div>
+        <label for="confirm-password">Re-type Password</label>
+        <input type="password" name="confirm-password" id="confirm-password" required />
+    </div>
+    <div>
+        <button>Cancel</button>
+        <button>Create Account</button>
+    </div>
+</main>
 {% endblock content %}
