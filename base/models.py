@@ -19,15 +19,15 @@ class Admin(models.Model):
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
     email = models.EmailField(max_length=254)
-    approval_status = models.ManyToManyField(User, related_name='managed_by', blank=True)
-    users_manage = models.ManyToManyField(User, related_name='managed_by', blank=True)
-    equipment_manage = models.ManyToManyField('Equipment', related_name='managed_by', blank=True)
-    booking_approval = models.ManyToManyField('Booking', related_name='confirms', blank=True)
-    reservation_approval = models.ManyToManyField('Reservation', related_name='approves', blank=True)
+    approval_status = models.ManyToManyField(User, related_name='managed_approval_status', blank=True)
+    users_manage = models.ManyToManyField(User, related_name='managed_users', blank=True)
+    equipment_manage = models.ManyToManyField('Equipment', related_name='managed_equipment', blank=True)
+    booking_approval = models.ManyToManyField('Booking', related_name='confirmed_by_admin', blank=True)
+    reservation_approval = models.ManyToManyField('Reservation', related_name='approved_by_admin', blank=True)
 
     def __str__(self):
-        return self.name    
-    
+        return self.name
+
 class Equipment(models.Model):
     cateogory = models.CharField(max_length=254)
     description = models.CharField(max_length=254)
