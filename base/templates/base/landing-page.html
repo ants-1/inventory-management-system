@@ -1,66 +1,9 @@
 {% extends 'main.html' %} {% block content %}
-<style>
-  main {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    flex-grow: 1;
-  }
-
-  h1 {
-    padding: 50px 0;
-    color: #898585;
-    font-size: 55px;
-    font-weight: 300;
-  }
-
-  .info {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 50px;
-  }
-
-  .extra-info {
-    display: flex;
-    justify-content: space-between;
-    width: 800px;
-  }
-
-
-  .info div {
-    width: 150px;
-  }
-
-  .info p {
-    font-weight: 300;
-    color: #898585;
-    text-align: center;
-  }
-
-  .extra-info div:not(.icon) {
-    width: 600px;
-  }
-
-  .extra-info p {
-    font-weight: 300;
-    color: #898585;
-    font-size: 25px;
-  }
-
-  .icon {
-    background-color: grey;
-    width: 150px;
-    height: 150px;
-  }
-
-  button {
-    border-radius: 10px;
-    color: #898585;
-    font-weight: 700;
-    padding: 5px;
-  }
-</style>
-<main>
+{% load static %}
+<!--
+  Author: Anthony
+-->
+<main class="landing-page">
   <h1>How it works...</h1>
   <div>
     <div class="info">
@@ -85,7 +28,7 @@
         <div class="icon"></div>
         <div>
             <p>We stock an extensive and varied database of equipment... from laptops & PCs to furniture and more...</p>
-            <button>View Equipment</button>
+            <a href="equipment_list">View Equipment</a>
         </div>
     </div>
   </div>

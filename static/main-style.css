@@ -1,0 +1,174 @@
+/* 
+Co-Authors:
+- Anthony
+*/
+
+.container {
+  display: flex;
+  flex-direction: column;
+  min-height: 71vh;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+main .landing-page {
+  flex-grow: 1;
+}
+
+h1 {
+  padding: 50px 0;
+  color: #898585;
+  font-size: 55px;
+  font-weight: 100;
+  margin-bottom: 70px;
+}
+
+/* landing-page.html */
+
+.info {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 50px;
+}
+
+.extra-info {
+  display: flex;
+  justify-content: space-between;
+  width: 800px;
+}
+
+
+.info div {
+  width: 150px;
+}
+
+.info p {
+  font-weight: 300;
+  color: #898585;
+  text-align: center;
+}
+
+.extra-info div:not(.icon) {
+  width: 600px;
+}
+
+.extra-info p {
+  font-weight: 300;
+  color: #898585;
+  font-size: 25px;
+}
+
+.landing-page .icon {
+  background-color: grey;
+  width: 150px;
+  height: 150px;
+}
+
+.landing-page a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 200px;
+  height: 50px;
+  border-radius: 5px;
+  background-color: #d9d9d9;
+  color: #898585;
+  border: 2px solid black;
+  font-weight: 700;
+  padding: 5px;
+  text-decoration: none;
+}
+
+.landing-page a:hover {
+  color: black;
+}
+
+/* login.html & sign-up.html styles */
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.form-group {
+  display: flex;
+  justify-content: space-between;
+  width: 700px;
+  margin-bottom: 30px;
+}
+
+.form-label {
+  font-size: 28px;
+  font-weight: 200;
+  color: #898585;
+}
+
+.sign-up-form .form-label {
+  font-size: 20px;
+}
+
+.form-input {
+  width: 500px;
+  border-radius: 5px;
+}
+
+.form-button-section {
+  display: flex;
+  width: 500px;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+
+.error-message {
+  color: red;
+}
+
+.sign-up-link {
+  color: blue;
+  text-decoration: none;
+}
+
+.login-info p {
+  font-size: 20px;
+}
+
+
+.login-options {
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+}
+
+.form-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 200px;
+  height: 50px;
+  font-size: 20px;
+  text-decoration: none;
+  background-color: #d9d9d9;
+  color: #605b5b;
+  border-radius: 5px;
+  border: 2px solid black;
+}
+
+.form-button:hover {
+  color: black;
+}
+
+.sign-up-form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.signup-btn-section {
+  display: flex;
+  gap: 30px;
+}
