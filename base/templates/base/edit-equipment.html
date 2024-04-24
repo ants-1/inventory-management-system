@@ -1,9 +1,101 @@
 {% extends 'main.html' %} {% block content %}
 <!--
-  Co-Authors: 
+Author: 
   - Anthony
 -->
+<style>
+  .edit-equipment-form .form-label {
+    font-size: 20px;
+  }
+
+  .edit-equipment-form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+
+  textarea {
+    height: 100px;
+    width: 500px;
+    border-radius: 5px;
+  }
+</style>
 <main>
   <h1>Edit Equipment</h1>
+  <form class="edit-equipment-form" method="GET" action="">
+    <div class="form-group">
+      <label for="device-category" class="form-label">Category</label>
+      <select name="device-category" id="device-category" class="form-input">
+        <option value="" disabled selected>Select Category</option>
+        <option value=""></option>
+        <option value=""></option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="device-name" class="form-label">Device Name</label>
+      <input
+        type="text"
+        name="device-name"
+        id="device-name"
+        class="form-input"
+      />
+    </div>
+    <div class="form-group">
+      <label for="device-type" class="form-label">Type</label>
+      <select name="device-type" id="device-type" class="form-input">
+        <option value="" disabled selected>Select Type</option>
+        <option value=""></option>
+        <option value=""></option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="quantity" class="form-label">Quantity</label>
+      <input type="number" class="form-input" min="0">
+    </div>
+    <div class="form-group">
+      <label for="location" class="form-label">Location</label>
+      <input
+        type="text"
+        name="location"
+        id="location"
+        class="form-input"
+      />
+    </div>
+    <div class="form-group">
+      <label for="device-name" class="form-label">Status</label>
+      <input
+        type="text"
+        name="device-name"
+        id="device-name"
+        class="form-input"
+      />
+    </div>
+    <div class="form-group">
+      <label for="comment" class="form-label">Comments</label>
+      <textarea></textarea>
+    </div>
+    <div class="form-group">
+      <label for="site" class="form-label">Site</label>
+      <select name="site" id="site" class="form-input">
+        <option value="" disabled selected>Select Site</option>
+        <option value="on-site">On-Site</option>
+        <option value="off-site">Off-Site</option>
+        <option value="on-off-site">On & Off-Site</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="serial-number" class="form-label">Serial Number</label>
+      <input
+        type="text"
+        name="serial-number"
+        id="serial-number"
+        class="form-input"
+      />
+    </div>
+    <div class="signup-btn-section"> <!-- Change class name here -->
+      <a class="form-button" href="landing_page">Back</a>
+      <button type="submit" class="form-button">Save</button>
+    </div>
+  </form>
 </main>
 {% endblock content %}

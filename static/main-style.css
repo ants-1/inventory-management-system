@@ -87,7 +87,7 @@ h1 {
   color: black;
 }
 
-/* login.html & sign-up.html styles */
+/* login.html, edit-equipment.html & sign-up.html styles */
 
 .login-form {
   display: flex;
@@ -172,3 +172,4 @@ h1 {
   display: flex;
   gap: 30px;
 }
+
