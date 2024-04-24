@@ -1,7 +1,76 @@
 {% extends 'main.html' %}
 
 {% block content %}
+<style>
+    .equipment-name {
+        font-size: 40px;
+        color: grey;
+        font-weight: 100;
+        margin-bottom: 40px;
+    }
+    
+    .equipment-image {
+        height: 400px;
+        width: 600px;
+        border-radius: 20px;
+        border: 2px solid black;
+        margin-bottom: 20px;
+    }
+
+    .pick-up-info {
+        display: flex;
+        align-items: baseline;
+        gap: 50px;
+    }
+
+    .booking-date {
+        display: flex;
+        gap: 50px;
+        margin-bottom: 20px;
+    }
+
+    #available {
+        color: #AEEB8F;
+    }
+
+    #not-available {
+        color: red;
+    }
+
+    .booking-btn {
+        text-decoration: none;
+        color: white;
+        padding: 10px 30px;
+        background-color: #AEEB8F;
+        border-radius: 10px;
+    }
+
+    .booking-btn:hover {
+        background-color: grey;
+        color: white;
+    }
+</style>
 <main>
     <h1>Equipment Details</h1>
+    <h3 class="equipment-name">Equipment Name</h3>
+    <img class="equipment-image" src="" alt=""/>
+    <div class="equipment-info">
+        <p>Equipment info</p>
+    </div>
+    <div class="booking-date">
+        <div>
+            <label>From:</label>
+            <input type="date">
+        </div>
+        <div>
+            <label>To:</label>
+            <input type="date">
+        </div>
+    </div>
+    <div class="pick-up-info">
+        <p>Status: <span id="available">Available</span></p>
+        <p>Pick up: <span id="site">On & Off Site</span></p>
+        <a class="booking-btn" href="">Add to Booking</a>
+    </div>
 </main>
 {% endblock content %}

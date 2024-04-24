@@ -30,6 +30,7 @@ class Admin(models.Model):
 
 class Equipment(models.Model):
     cateogory = models.CharField(max_length=254)
+    type = models.CharField( max_length=254)
     description = models.CharField(max_length=254)
     equipment_count = models.IntegerField(default=0)
     equipment_type = models.CharField(max_length=254)
