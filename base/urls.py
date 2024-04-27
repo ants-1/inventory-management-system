@@ -8,8 +8,8 @@ urlpatterns = [
     path('landing_page', views.landing_page, name='landing_page'),
     path('sign_up', views.sign_up, name='sign_up'),
     path('login', views.login, name='login'),
-    path('edit_profile', views.edit_profile, name='edit_profile'), # Form
-    path('equipment_details', views.equipment_details),
+    path('edit_profile', views.edit_profile, name='edit_profile'),
+    path('equipment_details/<int:id>/', views.equipment_details, name='equipment_details'),
     path('user_profile', views.user_profile, name='user_profile'),
     path('user_alerts', views.user_alerts, name='user_alerts'),
     path('bookings', views.bookings, name='bookings'),
