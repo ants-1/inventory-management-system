@@ -29,19 +29,18 @@ class Admin(models.Model):
         return self.name
 
 class Equipment(models.Model):
-    name = models.CharField(max_length=254)
-    # Removed catagory, on_site_date
-    type = models.CharField( max_length=254)
+    name = models.CharField(max_length=254, default="N/A")
+    type = models.CharField( max_length=254, default="Other")
     description = models.CharField(max_length=254)
-    quantity = models.IntegerField(default=0) #Changed from equipment_count to quantity
-    borrow_date = models.DateField()
-    return_date = models.DateField()
-    audit_date = models.DateField()
-    status = models.CharField( max_length=254)
-    serial_number = models.CharField( max_length=50)
-    comments = models.CharField( max_length=254)
-    location = models.CharField(max_length=254)
-    img_url = models.CharField(max_length=254)
+    quantity = models.IntegerField(default=0) 
+    borrow_date = models.DateField(null=True)
+    return_date = models.DateField(null=True)
+    audit_date = models.DateField(null=True)
+    status = models.CharField( max_length=254, null=True)
+    serial_number = models.CharField( max_length=50, null=True)
+    comments = models.CharField( max_length=254, default="None")
+    location = models.CharField(max_length=254, default="Other")
+    img_url = models.CharField(max_length=254, default="base/westminster-logo.png")
     availability = models.ManyToManyField(User, related_name='reserved_equipment', blank=True)
 
     def __str__(self):
