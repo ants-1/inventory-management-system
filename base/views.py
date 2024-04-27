@@ -1,7 +1,8 @@
 from django.shortcuts import render
+from .models import *
 
 # Fake DB table data to test the functionality of equipment features
-testdata = [
+""" testdata = [
     {
         "id": 1,
         "name": "Laptop w/ 2070 GPU",
@@ -47,10 +48,9 @@ testdata = [
         "location": "Lab 1",
         "img_url": "base/westminster-logo.png",
     },
-]
+] """
 
 # Create your views here.
-
 
 def landing_page(request):
     return render(request, "base/landing-page.html")
@@ -73,15 +73,13 @@ def edit_profile(request):
 
 
 def equipment_list(request):
-    context = {"testdata": testdata}
+    equipment = Equipment.objects.all()
+    context = {"equipment": equipment}
     return render(request, "base/equipment-list.html", context)
 
 
 def equipment_details(request, id):
-    list_item = None
-    for i in testdata:
-        if i["id"] == int(id):
-            list_item = i
+    list_item = Equipment.objects.get(id=id)
     context = {"list_item": list_item}
     return render(request, "base/equipment-details.html", context)
 

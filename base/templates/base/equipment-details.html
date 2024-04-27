@@ -1,6 +1,10 @@
 {% extends 'main.html' %}
 {% load static %}
 {% block content %}
+<!--
+Author: 
+  - Anthony
+-->
 <style>
     .equipment-name {
         font-size: 40px;
@@ -47,6 +51,7 @@
         padding: 10px 30px;
         background-color: #AEEB8F;
         border-radius: 10px;
+        border: none;
     }
 
     .booking-btn:hover {
@@ -84,7 +89,7 @@
     <div class="pick-up-info">
         <p>Status: <span id="status">{{list_item.status}}</span></p>
         <p>Pick up: <span id="site">{{list_item.location}}</span></p>
-        <button class="booking-btn" href="">Request Booking</button>
+        <button class="booking-btn">Request Booking</button>
     </div>
 </main>
 <script>
