@@ -134,22 +134,29 @@
   </div>
   <div class="equipment-list-results">
     <!-- Equipment card for Student -->
+    {% for item in testdata %}
     <div class="equipment-card">
-      <img class="card-img" src="" alt="" />
+      <img class="card-img" src="{% static item.img_url %}"  alt={{item.name}} />
       <div class="right">
         <div class="top">
-          <p class="card-title">Equipment Title</p>
+          <p class="card-title">{{item.name}}</p>
           <div class="equipment-btn">
-            <button class="details">Details</button>
-            <button class="book-equipment">Book Now</button>
+            <a href="{% url 'equipment_details' item.id %}"><button class="details">Details</button></a>
+            {% if item.status != "On Loan" and item.status != "Out of Service" %}
+              <button class="book-equipment" id="bookBtn">Book Now</button>
+            {% else %}
+              <button class="book-equipment" id="bookBtn">Out</button>
+            {% endif %}
           </div>
         </div>
         <div class="equipment-info">
-          <p>Location: <span id="location">Lab</span></p>
-          <p>Availability: <span id="availability">Available</span></p>
+          <p>Category: <span id="category">{{item.type}}</span></p>
+          <p>Location: <span id="location">{{item.location}}</span></p>
+          <p>Status: <span id="availability">{{item.status}}</span></p>
         </div>
       </div>
     </div>
+    {% endfor %}
     <!-- Equipment card for Admin-->
     <div class="equipment-card">
       <img class="card-img" src="" alt="" />
@@ -174,4 +181,17 @@
     </div>
   </div>
 </main>
+<script>
+  const bookBtns = document.querySelectorAll(".book-equipment");
+
+  bookBtns.forEach(button => {
+    if (button.textContent.trim() === "Out") {
+      button.style.backgroundColor = "grey";
+      button.style.cursor = "default";
+      button.disabled = true;
+    }
+  });
+  
+</script>
+
 {% endblock content %}
