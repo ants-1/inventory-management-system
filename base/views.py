@@ -1,5 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import *
+from .forms import *
 
 # Fake DB table data to test the functionality of equipment features
 """ testdata = [
@@ -107,7 +108,14 @@ def admin_profile(request):
 
 
 def add_equipment(request):
-    return render(request, "base/add-equipment.html")
+    if request.method == "POST":
+        form = AddEquipmentForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect("equipment_list")
+    else:
+        form = AddEquipmentForm()
+    return render(request, "base/add-equipment.html", {"form": form})
 
 
 def edit_equipement(request):
