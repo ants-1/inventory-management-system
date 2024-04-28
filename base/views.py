@@ -3,55 +3,6 @@ from django.db.models import Q
 from .models import *
 from .forms import *
 
-# Fake DB table data to test the functionality of equipment features
-""" testdata = [
-    {
-        "id": 1,
-        "name": "Laptop w/ 2070 GPU",
-        "type": "Laptop",
-        "description": "Windows laptop",
-        "quantity": 10,
-        "borrow_date": "10-03-24",
-        "return_date": "15-03-24",
-        "audit_date": "20-05-24",
-        "status": "On Loan",
-        "serial_number": "123j1h23j42",
-        "comments": "none",
-        "location": "Other",
-        "img_url": "base/westminster-logo.png",
-    },
-    {
-        "id": 2,
-        "name": "Laptop w/ 3070 GPU",
-        "type": "Laptop",
-        "description": "Windows laptop",
-        "quantity": 10,
-        "borrow_date": "",
-        "return_date": "",
-        "audit_date": "20-05-24",
-        "status": "Available",
-        "serial_number": "123j1h23j42",
-        "comments": "none",
-        "location": "Other",
-        "img_url": "base/westminster-logo.png",
-    },
-    {
-        "id": 3,
-        "name": "PC w/ 4070 GPU",
-        "type": "PC",
-        "description": "Windows PC",
-        "quantity": 10,
-        "borrow_date": "",
-        "return_date": "",
-        "audit_date": "20-05-24",
-        "status": "Out of Service",
-        "serial_number": "123j1h23j42",
-        "comments": "none",
-        "location": "Lab 1",
-        "img_url": "base/westminster-logo.png",
-    },
-] """
-
 # Create your views here.
 
 def landing_page(request):
@@ -73,14 +24,43 @@ def login(request):
 def edit_profile(request):
     return render(request, "base/edit-profile.html")
 
-
 def equipment_list(request):
+    q = request.GET.get('q', '')
+
+    general_filter = request.GET.get('general-filter', 'all')
+    type_filter = request.GET.get('type-filter', 'all')
+    location_filter = request.GET.get('location-filter', 'all')
+    status_filter = request.GET.get('status-filter', 'all').lower()  
     
-    # Handle search functionality
-    q = request.GET.get('q') if request.GET.get('q') != None else ''
-    equipment = Equipment.objects.filter(name__icontains=q)
+    equipment = Equipment.objects.all()
+
+    if general_filter == 'recently-added':
+        equipment = equipment.order_by('-created') 
+    elif general_filter == 'oldest-added':
+        equipment = equipment.order_by('created') 
     
-    context = {"equipment": equipment}
+    if type_filter != 'all':
+        equipment = equipment.filter(type=type_filter)
+    if location_filter != 'all':
+        equipment = equipment.filter(location=location_filter)
+    if status_filter != 'all':
+        equipment = equipment.filter(status__icontains=status_filter) 
+    
+    if q:
+        equipment = equipment.filter(
+            Q(name__icontains=q) | 
+            Q(serial_number__icontains=q) |
+            Q(description__icontains=q)
+        )
+    
+    context = {
+        "equipment": equipment,
+        "general_filter": general_filter,
+        "type_filter": type_filter,
+        "location_filter": location_filter,
+        "status_filter": status_filter,
+    }
+    
     return render(request, "base/equipment-list.html", context)
 
 

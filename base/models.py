@@ -1,7 +1,6 @@
 from django.db import models
 
 # Create your models here.
-from django.db import models
 
 class User(models.Model):
     username = models.CharField(max_length=150)
@@ -32,7 +31,6 @@ class Equipment(models.Model):
     name = models.CharField(max_length=254, default="N/A")
     type = models.CharField( max_length=254, default="Other")
     description = models.CharField(max_length=254)
-    quantity = models.IntegerField(default=0) 
     borrow_date = models.DateField(null=True)
     return_date = models.DateField(null=True)
     audit_date = models.DateField(null=True)
@@ -41,6 +39,8 @@ class Equipment(models.Model):
     comments = models.CharField( max_length=254, default="None")
     location = models.CharField(max_length=254, default="Other")
     img_url = models.CharField(max_length=254, default="base/westminster-logo.png")
+    updated = models.DateTimeField(auto_now=True)
+    created = models.DateTimeField(auto_now=True)
     availability = models.ManyToManyField(User, related_name='reserved_equipment', blank=True)
 
     def __str__(self):
