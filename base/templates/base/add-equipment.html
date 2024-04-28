@@ -21,97 +21,16 @@
 </style>
 <main>
   <h1>Add Equipment</h1>
-  <form class="add-equipment-form">
-    <div class="form-group">
-      <label for="device-category" class="form-label">Category</label>
-      <select
-        name="device-category"
-        id="device-category"
-        class="form-input"
-        required
-      >
-        <option value="" disabled selected>Select Category</option>
-        <option value=""></option>
-        <option value=""></option>
-      </select>
-    </div>
-    <div class="form-group">
-      <label for="device-name" class="form-label">Device Name</label>
-      <input
-        type="text"
-        name="device-name"
-        id="device-name"
-        class="form-input"
-        required
-      />
-    </div>
-    <div class="form-group">
-      <label for="device-type" class="form-label">Type</label>
-      <select name="device-type" id="device-type" class="form-input" required>
-        <option value="" disabled selected>Select Type</option>
-        <option value=""></option>
-        <option value=""></option>
-      </select>
-    </div>
-    <div class="form-group">
-      <label for="quantity" class="form-label">Quantity</label>
-      <input
-        type="number"
-        name="quantity"
-        id="quantity"
-        class="form-input"
-        min="0"
-        required
-      />
-    </div>
-    <div class="form-group">
-      <label for="location" class="form-label">Location</label>
-      <input
-        type="text"
-        name="location"
-        id="location"
-        class="form-input"
-        required
-      />
-    </div>
-    <div class="form-group">
-      <label for="device-name" class="form-label">Status</label>
-      <input
-        type="text"
-        name="device-name"
-        id="device-name"
-        class="form-input"
-        required
-      />
-    </div>
-    <div class="form-group">
-      <label for="comment" class="form-label">Comments</label>
-      <textarea></textarea>
-    </div>
-    <div class="form-group">
-      <label for="site" class="form-label">Site</label>
-      <select name="site" id="site" class="form-input" required>
-        <option value="" disabled selected>Select Site</option>
-        <option value="on-site">On-Site</option>
-        <option value="off-site">Off-Site</option>
-        <option value="on-off-site">On & Off-Site</option>
-      </select>
-    </div>
-    <div class="form-group">
-      <label for="serial-number" class="form-label">Serial Number</label>
-      <input
-        type="text"
-        name="serial-number"
-        id="serial-number"
-        class="form-input"
-        required
-      />
-    </div>
+  <form class="add-equipment-form" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
     <div class="signup-btn-section">
-      <!-- Change class name here -->
-      <a class="form-button" href="landing_page">Back</a>
+      <a class="form-button" href="{% url 'landing_page' %}">Back</a>
       <button type="submit" class="form-button">Save</button>
     </div>
   </form>
+</main>
+
+
 </main>
 {% endblock content %}
