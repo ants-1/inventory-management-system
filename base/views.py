@@ -118,8 +118,24 @@ def add_equipment(request):
     return render(request, "base/add-equipment.html", {"form": form})
 
 
-def edit_equipement(request):
-    return render(request, "base/edit-equipment.html")
+def edit_equipment(request, id):
+    equipment = Equipment.objects.get(id=id)
+    if request.method == "POST":
+        form = EditEquipmentForm(request.POST, instance=equipment)
+        if form.is_valid():
+            form.save()
+            return redirect("equipment_list")
+    else:
+        form = EditEquipmentForm(instance=equipment)
+    return render(request, "base/edit-equipment.html", {"form": form})
+
+def delete_equipment(request, id):
+    equipment = Equipment.objects.get(id=id)
+    if request.method == 'POST':
+        equipment.delete()
+        return redirect('equipment_list')
+    return render(request, "base/delete-equipment.html", {"equipment": equipment})
+    
 
 
 def edit_users(request):
