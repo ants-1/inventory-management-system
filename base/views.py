@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.db.models import Q
 from .models import *
 from .forms import *
 
@@ -74,7 +75,11 @@ def edit_profile(request):
 
 
 def equipment_list(request):
-    equipment = Equipment.objects.all()
+    
+    # Handle search functionality
+    q = request.GET.get('q') if request.GET.get('q') != None else ''
+    equipment = Equipment.objects.filter(name__icontains=q)
+    
     context = {"equipment": equipment}
     return render(request, "base/equipment-list.html", context)
 
