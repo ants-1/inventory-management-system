@@ -115,25 +115,71 @@
     justify-content: space-between;
   }
 
+  .filters {
+    margin-top: 20px;
+    display: grid;
+    gap: 20px;
+    grid-template-columns: auto auto;
+  }
+
+  .filter-bar label {
+    margin-right: 10px;
+  }
+
+  .hidden {
+    display: none;
+  }
 
 </style>
 
 <main>
   <h1>Equipment List</h1>
   <div class="bar">
-    <div class="filter-bar">
-      <select name="filter" id="filter" class="filter" required>
-        <option value="all" selected>All</option>
-        <option value="laptop">Laptop</option>
-        <option value="pc">PC</option>
-      </select>
-    </div>
+    <button id="filter">Filter</button>
     <form class="search-bar" method="GET" action="{% url 'equipment_list' %}">
       <input type="text" name="q" class="search" placeholder="Search..." />
+      <button>🔎</button>
     </form>
     <!-- Admin only has access to Add button -->
     <a href="{% url 'add_equipment' %}"><button class="add">Add</button></a>
   </div>
+  <div class="filters hidden">
+    <form class="filter-bar" method="GET" action="{% url 'equipment_list' %}" id="generalFilterForm">
+      <label for="general-filter">General: </label>
+      <select name="general-filter" id="general-filter" class="filter" required>
+        <option value="all" {% if general_filter == 'all' %}selected{% endif %}>All</option>
+        <option value="recently-added" {% if general_filter == 'recently-added' %}selected{% endif %}>Recently Added</option>
+        <option value="oldest-added" {% if general_filter == 'oldest-added' %}selected{% endif %}>Oldest Added</option>
+      </select>
+    </form>
+    <form class="filter-bar" method="GET" action="{% url 'equipment_list' %}" id="typeFilterForm">
+      <label for="type-filter">Type: </label>
+      <select name="type-filter" id="type-filter" class="filter" required>
+        <option value="all" {% if type_filter == 'all' %}selected{% endif %}>All</option>
+        <option value="Laptop" {% if type_filter == 'Laptop' %}selected{% endif %}>Laptop</option>
+        <option value="PC" {% if type_filter == 'PC' %}selected{% endif %}>PC</option>
+        <option value="Phone" {% if type_filter == 'Phone' %}selected{% endif %}>Phone</option>
+      </select>
+    </form>
+    <form class="filter-bar" method="GET" action="{% url 'equipment_list' %}" id="locationFilterForm">
+      <label for="location-filter">Location: </label>
+      <select name="location-filter" id="location-filter" class="filter" required>
+        <option value="all" {% if location_filter == 'all' %}selected{% endif %}>All</option>
+        <option value="Other" {% if location_filter == 'Other' %}selected{% endif %}>Other</option>
+        <option value="Lab" {% if location_filter == 'Lab' %}selected{% endif %}>Lab</option>
+      </select>
+    </form>
+    <form class="filter-bar" method="GET" action="{% url 'equipment_list' %}" id="statusFilterForm">
+      <label for="status-filter">Status: </label>
+      <select name="status-filter" id="status-filter" class="filter" required>
+        <option value="all" {% if status_filter == 'all' %}selected{% endif %}>All</option>
+        <option value="On Loan" {% if status_filter == 'On Loan' %}selected{% endif %}>On Loan</option>
+        <option value="Available" {% if status_filter == 'Available' %}selected{% endif %}>Available</option>
+        <option value="Out of Service" {% if status_filter == 'Out of Service' %}selected{% endif %}>Out of Service</option>
+      </select>
+    </form>      
+</div>
+
   <div class="equipment-list-results">
     <!-- Equipment card for Student -->
     {% for item in equipment %}
@@ -167,6 +213,7 @@
   </div>
 </main>
 <script>
+  // JavaScript code
   const bookBtns = document.querySelectorAll(".book-equipment");
 
   bookBtns.forEach(button => {
@@ -177,6 +224,34 @@
     }
   });
   
+  const generalFilterSelect = document.getElementById('general-filter');
+  const typeFilterSelect = document.getElementById('type-filter');
+  const locationFilterSelect = document.getElementById('location-filter');
+  const statusFilterSelect = document.getElementById('status-filter'); 
+  
+  generalFilterSelect.addEventListener('change', function() {
+    document.getElementById('generalFilterForm').submit();
+  });
+  
+  typeFilterSelect.addEventListener('change', function() {
+    document.getElementById('typeFilterForm').submit();
+  });
+  locationFilterSelect.addEventListener('change', function() {
+    document.getElementById('locationFilterForm').submit();
+  });
+  statusFilterSelect.addEventListener('change', function() {
+    document.getElementById('statusFilterForm').submit();
+  });
+
+  const filterButton = document.getElementById('filter');
+  const filters = document.querySelector('.filters'); // Selecting by class name
+
+  filterButton.addEventListener('click', function() {
+    // Toggle the visibility of the filters section
+    if (filters) {
+      filters.classList.toggle('hidden');
+    }
+  });
 </script>
 
 {% endblock content %}
