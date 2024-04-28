@@ -192,7 +192,7 @@
           <div class="equipment-btn">
             <a href="{% url 'equipment_details' item.id %}"><button class="details">Details</button></a>
             {% if item.status != "On Loan" and item.status != "Out of Service" %}
-              <button class="book-equipment" id="bookBtn">Book Now</button>
+              <a href="{% url 'equipment_details' item.id %}"><button class="book-equipment" id="bookBtn">Book Now</button></a>
             {% else %}
               <button class="book-equipment" id="bookBtn">Out</button>
             {% endif %}
@@ -244,7 +244,7 @@
   });
 
   const filterButton = document.getElementById('filter');
-  const filters = document.querySelector('.filters'); // Selecting by class name
+  const filters = document.querySelector('.filters');
 
   filterButton.addEventListener('click', function() {
     // Toggle the visibility of the filters section

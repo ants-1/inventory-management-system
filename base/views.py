@@ -5,6 +5,7 @@ from .forms import *
 
 # Create your views here.
 
+
 def landing_page(request):
     return render(request, "base/landing-page.html")
 
@@ -24,35 +25,36 @@ def login(request):
 def edit_profile(request):
     return render(request, "base/edit-profile.html")
 
-def equipment_list(request):
-    q = request.GET.get('q', '')
 
-    general_filter = request.GET.get('general-filter', 'all')
-    type_filter = request.GET.get('type-filter', 'all')
-    location_filter = request.GET.get('location-filter', 'all')
-    status_filter = request.GET.get('status-filter', 'all').lower()  
-    
+def equipment_list(request):
+    q = request.GET.get("q", "")
+
+    general_filter = request.GET.get("general-filter", "all")
+    type_filter = request.GET.get("type-filter", "all")
+    location_filter = request.GET.get("location-filter", "all")
+    status_filter = request.GET.get("status-filter", "all").lower()
+
     equipment = Equipment.objects.all()
 
-    if general_filter == 'recently-added':
-        equipment = equipment.order_by('-created') 
-    elif general_filter == 'oldest-added':
-        equipment = equipment.order_by('created') 
-    
-    if type_filter != 'all':
+    if general_filter == "recently-added":
+        equipment = equipment.order_by("-created")
+    elif general_filter == "oldest-added":
+        equipment = equipment.order_by("created")
+
+    if type_filter != "all":
         equipment = equipment.filter(type=type_filter)
-    if location_filter != 'all':
+    if location_filter != "all":
         equipment = equipment.filter(location=location_filter)
-    if status_filter != 'all':
-        equipment = equipment.filter(status__icontains=status_filter) 
-    
+    if status_filter != "all":
+        equipment = equipment.filter(status__icontains=status_filter)
+
     if q:
         equipment = equipment.filter(
-            Q(name__icontains=q) | 
-            Q(serial_number__icontains=q) |
-            Q(description__icontains=q)
+            Q(name__icontains=q)
+            | Q(serial_number__icontains=q)
+            | Q(description__icontains=q)
         )
-    
+
     context = {
         "equipment": equipment,
         "general_filter": general_filter,
@@ -60,7 +62,7 @@ def equipment_list(request):
         "location_filter": location_filter,
         "status_filter": status_filter,
     }
-    
+
     return render(request, "base/equipment-list.html", context)
 
 
@@ -114,13 +116,13 @@ def edit_equipment(request, id):
         form = EditEquipmentForm(instance=equipment)
     return render(request, "base/edit-equipment.html", {"form": form})
 
+
 def delete_equipment(request, id):
     equipment = Equipment.objects.get(id=id)
-    if request.method == 'POST':
+    if request.method == "POST":
         equipment.delete()
-        return redirect('equipment_list')
+        return redirect("equipment_list")
     return render(request, "base/delete-equipment.html", {"equipment": equipment})
-    
 
 
 def edit_users(request):
