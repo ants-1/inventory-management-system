@@ -128,9 +128,9 @@
         <option value="pc">PC</option>
       </select>
     </div>
-    <div class="search-bar">
-      <input type="text" class="search" placeholder="Search..." />
-    </div>
+    <form class="search-bar" method="GET" action="{% url 'equipment_list' %}">
+      <input type="text" name="q" class="search" placeholder="Search..." />
+    </form>
     <!-- Admin only has access to Add button -->
     <a href="{% url 'add_equipment' %}"><button class="add">Add</button></a>
   </div>
@@ -151,6 +151,7 @@
               <button class="book-equipment" id="bookBtn">Out</button>
             {% endif %}
             <!-- Only Admin has access to Edit and Add, Delete-->
+            <!-- Change to icons -->
             <a href="{% url 'edit_equipment' item.id %}"><button class="edit">Edit</button></a>
             <a href="{% url 'delete_equipment' item.id %}"><button class="delete">Delete</button></a>
           </div>
@@ -163,28 +164,6 @@
       </div>
     </div>
     {% endfor %}
-    <!-- Equipment card for Admin-->
-    <div class="equipment-card">
-      <img class="card-img" src="" alt="" />
-      <div class="right">
-        <div class="top">
-          <p class="card-title">Equipment Title</p>
-          <div class="admin-equipment-btn">
-            <button class="details">Details</button>
-            <button class="book-equipment">Book Now</button>
-            <!-- Change to icons -->
-            <button class="edit">Edit</button>
-            <button class="add">Add</button>
-          </div>
-          
-        </div>
-        <div class="equipment-info">
-          <p>Category: <span id="category">Laptop</span></p>
-          <p>Location: <span id="location">Lab</span></p>
-          <p>Availability: <span id="availability">Available</span></p>
-        </div>
-      </div>
-    </div>
   </div>
 </main>
 <script>
