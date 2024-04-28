@@ -131,6 +131,8 @@
     <div class="search-bar">
       <input type="text" class="search" placeholder="Search..." />
     </div>
+    <!-- Admin only has access to Add button -->
+    <a href="{% url 'add_equipment' %}"><button class="add">Add</button></a>
   </div>
   <div class="equipment-list-results">
     <!-- Equipment card for Student -->
@@ -140,6 +142,7 @@
       <div class="right">
         <div class="top">
           <p class="card-title">{{item.name}}</p>
+          <!-- Change class to admin-equipment-btn when logged in as Admin-->
           <div class="equipment-btn">
             <a href="{% url 'equipment_details' item.id %}"><button class="details">Details</button></a>
             {% if item.status != "On Loan" and item.status != "Out of Service" %}
@@ -147,6 +150,9 @@
             {% else %}
               <button class="book-equipment" id="bookBtn">Out</button>
             {% endif %}
+            <!-- Only Admin has access to Edit and Add, Delete-->
+            <a href="{% url 'edit_equipment' item.id %}"><button class="edit">Edit</button></a>
+            <a href="{% url 'delete_equipment' item.id %}"><button class="delete">Delete</button></a>
           </div>
         </div>
         <div class="equipment-info">
