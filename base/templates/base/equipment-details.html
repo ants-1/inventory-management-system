@@ -40,17 +40,17 @@ Author:
     </div>
 </main>
 <script>
-    const status = document.getElementById("status");
+    let equipmentStatus = document.getElementById("status");
     const bookingBtns = document.getElementsByClassName("booking-btn");
     
-    if (status.textContent.trim() === "On Loan" || status.textContent.trim() === "Out of Service") {
-        status.classList.add(status.textContent.trim() === "On Loan" ? "not-available" : "out-service");
+    if (equipmentStatus.textContent.trim() === "On Loan" || equipmentStatus.textContent.trim() === "Out of Service") {
+        equipmentStatus.classList.add(equipmentStatus.textContent.trim() === "On Loan" ? "not-available" : "out-service");
         Array.from(bookingBtns).forEach(button => {
             button.style.backgroundColor = "grey";
             button.disabled = true;
         });
-    } else if (status.textContent.trim() === "Available") {
-        status.classList.add("available");
+    } else if (equipmentStatus.textContent.trim() === "Available") {
+        equipmentStatus.classList.add("available");
     }
 </script>
 {% endblock content %}
