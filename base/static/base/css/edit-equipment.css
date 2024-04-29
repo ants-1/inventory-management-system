@@ -1,0 +1,15 @@
+.edit-equipment-form .form-label {
+    font-size: 20px;
+  }
+
+  .edit-equipment-form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+
+  textarea {
+    height: 100px;
+    width: 500px;
+    border-radius: 5px;
+  }

@@ -1,0 +1,47 @@
+.delete-form {
+    margin-top: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 300px;
+    height: 200px;
+    border: 2px solid black;
+  }
+
+  .delete-btns {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+  }
+
+  .confirm-btn,
+  .cancel-btn {
+    background-color: rgba(13, 101, 217, 0.6);
+    width: 100px;
+    height: 40px;
+    text-align: center;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+    margin-top: 20px;
+  }
+
+  .cancel-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .confirm-btn {
+    background-color: red;
+  }
+
+  .confirm-btn:hover,
+  .cancel-btn:hover {
+    background-color: grey;
+    color: white;
+  }
