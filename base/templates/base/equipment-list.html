@@ -1,16 +1,14 @@
-{% extends 'main.html' %}
-{% block content %} 
-{% load static %}
+{% extends 'main.html' %} {% block content %} {% load static %}
 <!--
   Author: Anthony
 -->
 <main>
-  <h1>{{ page_title }}</h1>
+  <h1>Equipment List</h1>
   <div class="bar">
-    <button class="filter-btn" id="filter">Filter</button>
+    <button id="filter">Filter</button>
     <form class="search-bar" method="GET" action="{% url 'equipment_list' %}">
       <input type="text" name="q" class="search" placeholder="Search..." />
-      <button class="search-icon">🔎</button>
+      <button>🔎</button>
     </form>
     <!-- Admin only has access to Add button -->
     <a href="{% url 'add_equipment' %}"><button class="add">Add</button></a>
@@ -55,9 +53,73 @@
   <div class="equipment-list-results">
     <!-- Equipment card for Student -->
     {% for item in equipment %}
-      {% include 'base/equipment-card.html' %}
+    <div class="equipment-card">
+      <img class="card-img" src="{% static item.img_url %}"  alt={{item.name}} />
+      <div class="right">
+        <div class="top">
+          <p class="card-title">{{item.name}}</p>
+          <!-- Change class to admin-equipment-btn when logged in as Admin--> 
+          <div class="equipment-btn">
+            <a href="{% url 'equipment_details' item.id %}"><button class="details">Details</button></a>
+            {% if item.status != "On Loan" and item.status != "Out of Service" %}
+              <a href="{% url 'equipment_details' item.id %}"><button class="book-equipment" id="bookBtn">Book Now</button></a>
+            {% else %}
+              <button class="book-equipment" id="bookBtn">Out</button>
+            {% endif %}
+            <!-- Only Admin has access to Edit & Delete-->
+            <a href="{% url 'edit_equipment' item.id %}"><button class="edit">Edit</button></a>
+            <a href="{% url 'delete_equipment' item.id %}"><button class="delete">Delete</button></a>
+          </div>
+        </div>
+        <div class="equipment-info">
+          <p>Category: <span id="category">{{item.type}}</span></p>
+          <p>Location: <span id="location">{{item.location}}</span></p>
+          <p>Status: <span id="availability">{{item.status}}</span></p>
+        </div>
+      </div>
+    </div>
     {% endfor %}
   </div>
 </main>
+<script>
+  const bookBtns = document.querySelectorAll(".book-equipment");
+  const generalFilterSelect = document.getElementById('general-filter');
+  const typeFilterSelect = document.getElementById('type-filter');
+  const locationFilterSelect = document.getElementById('location-filter');
+  const statusFilterSelect = document.getElementById('status-filter'); 
+  const filterButton = document.getElementById('filter');
+  const filters = document.querySelector('.filters');
+
+  // Change button styling and disable button if item.status is "Out of Service" or "On Loan"
+  bookBtns.forEach(button => {
+    if (button.textContent.trim() === "Out") {
+      button.style.backgroundColor = "grey";
+      button.style.cursor = "default";
+      button.disabled = true;
+    }
+  });
+  
+  // Submit form based on the filter selected
+  generalFilterSelect.addEventListener('change', function() {
+    document.getElementById('generalFilterForm').submit();
+  });
+  
+  typeFilterSelect.addEventListener('change', function() {
+    document.getElementById('typeFilterForm').submit();
+  });
+  locationFilterSelect.addEventListener('change', function() {
+    document.getElementById('locationFilterForm').submit();
+  });
+  statusFilterSelect.addEventListener('change', function() {
+    document.getElementById('statusFilterForm').submit();
+  });
+
+  // Toggle the visibility of the filters section
+  filterButton.addEventListener('click', function() { 
+    if (filters) {
+      filters.classList.toggle('hidden');
+    }
+  });
+</script>
 
 {% endblock content %}

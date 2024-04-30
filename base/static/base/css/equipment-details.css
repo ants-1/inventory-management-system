@@ -1,6 +1,6 @@
 .equipment-name {
   font-size: 40px;
-  color: var(--grey);
+  color: grey;
   font-weight: 100;
   margin-bottom: 40px;
 }
@@ -9,7 +9,7 @@
   height: 400px;
   width: 600px;
   border-radius: 20px;
-  border: 2px solid var(--black);
+  border: 2px solid black;
   margin-bottom: 20px;
 }
 
@@ -26,27 +26,27 @@
 }
 
 .available {
-  color: var(--green);
+  color: #AEEB8F;
 }
 
 .not-available {
-  color: var(--red);
+  color: red;
 }
 
 .out-service {
-  color: var(--orange);
+  color: orange;
 }
 
 .booking-btn {
   text-decoration: none;
-  color: var(--white);
+  color: white;
   padding: 10px 30px;
-  background-color: var(--green);
+  background-color: #AEEB8F;
   border-radius: 10px;
   border: none;
 }
 
 .booking-btn:hover {
-  background-color: var(--grey);
-  color: var(--white);
+  background-color: grey;
+  color: white;
 }
