@@ -1,6 +1,11 @@
+/* 
+Author:
+- Anthony
+*/
+
 .equipment-name {
   font-size: 40px;
-  color: grey;
+  color: var(--grey);
   font-weight: 100;
   margin-bottom: 40px;
 }
@@ -9,7 +14,7 @@
   height: 400px;
   width: 600px;
   border-radius: 20px;
-  border: 2px solid black;
+  border: 2px solid var(--black);
   margin-bottom: 20px;
 }
 
@@ -26,27 +31,27 @@
 }
 
 .available {
-  color: #AEEB8F;
+  color: var(--green);
 }
 
 .not-available {
-  color: red;
+  color: var(--red);
 }
 
 .out-service {
-  color: orange;
+  color: var(--orange);
 }
 
 .booking-btn {
   text-decoration: none;
-  color: white;
+  color: var(--white);
   padding: 10px 30px;
-  background-color: #AEEB8F;
+  background-color: var(--green);
   border-radius: 10px;
   border: none;
 }
 
 .booking-btn:hover {
-  background-color: grey;
-  color: white;
+  background-color: var(--grey);
+  color: var(--white);
 }
