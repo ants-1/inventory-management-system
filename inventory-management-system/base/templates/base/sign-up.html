@@ -1,0 +1,19 @@
+{% extends 'main.html' %} {% block content %}
+{% load static %}
+<!--
+  Co-Author: 
+  - Anthony
+-->
+
+<main>
+  <h1 class="sign-up-title">Sign Up</h1>
+  <form class="sign-up-form" method="POST" action="">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <div class="signup-btn-section">
+      <a class="form-button" href="landing_page">Cancel</a>
+      <button type="submit" class="form-button">Create Account</button>
+    </div>
+  </form>
+</main>
+{% endblock content %}
