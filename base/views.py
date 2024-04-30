@@ -11,15 +11,12 @@ Co-Authors:
 
 # Create your views here.
 
-
 def landing_page(request):
     page_title = "Landing Page"
     return render(request, "base/landing-page.html", {"page_title": page_title})
 
-
 def navbar(request):
     return render(request, "navbar.html")
-
 
 def sign_up(request):
     page_title = "Sign Up"
