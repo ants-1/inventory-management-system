@@ -8,20 +8,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+    <title>{{ page_title }}</title>
     {% load bootstrap5 %}
     {% bootstrap_css %}
-    <link rel="stylesheet" type="text/css" href="{% static 'main-style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'base/css/styles.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'base/css/forms.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'base/css/equipment-list.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'base/css/booking.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'base/css/delete-equipment.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'base/css/equipment-details.css' %}">
 </head>
 <body>
     {% include 'navbar.html' %}
     
-    <div class="container">
+    <div class="containers">
         {% block content %}
         {% endblock content %}
     </div>
 
     {% include 'footer.html' %}
     {% bootstrap_javascript %}
+    <script src="{% static 'base/js/script.js' %}"></script>
 </body>
 </html>

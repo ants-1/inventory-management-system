@@ -1,0 +1,26 @@
+{% load static %}
+<div class="equipment-card">
+    <img class="card-img" src="{% static item.img_url %}"  alt={{item.name}} />
+    <div class="right">
+      <div class="top">
+        <p class="card-title">{{item.name}}</p>
+        <!-- Change class to admin-equipment-btn when logged in as Admin--> 
+        <div class="equipment-btn">
+          <a href="{% url 'equipment_details' item.id %}"><button class="details">Details</button></a>
+          {% if item.status != "On Loan" and item.status != "Out of Service" %}
+            <a href="{% url 'equipment_details' item.id %}"><button class="book-equipment" id="bookBtn">Book</button></a>
+          {% else %}
+            <button class="book-equipment" id="bookBtn">Out</button>
+          {% endif %}
+          <!-- Only Admin has access to Edit & Delete-->
+          <a href="{% url 'edit_equipment' item.id %}"><button class="edit">Edit</button></a>
+          <a href="{% url 'delete_equipment' item.id %}"><button class="delete">Delete</button></a>
+        </div>
+      </div>
+      <div class="equipment-info">
+        <p>Category: <span id="category">{{item.type}}</span></p>
+        <p>Location: <span id="location">{{item.location}}</span></p>
+        <p>Status: <span id="availability">{{item.status}}</span></p>
+      </div>
+    </div>
+</div>

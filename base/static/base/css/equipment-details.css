@@ -1,0 +1,57 @@
+/* 
+Author:
+- Anthony
+*/
+
+.equipment-name {
+  font-size: 40px;
+  color: var(--grey);
+  font-weight: 100;
+  margin-bottom: 40px;
+}
+
+.equipment-image {
+  height: 400px;
+  width: 600px;
+  border-radius: 20px;
+  border: 2px solid var(--black);
+  margin-bottom: 20px;
+}
+
+.pick-up-info {
+  display: flex;
+  align-items: baseline;
+  gap: 50px;
+}
+
+.booking-date {
+  display: flex;
+  gap: 50px;
+  margin-bottom: 20px;
+}
+
+.available {
+  color: var(--green);
+}
+
+.not-available {
+  color: var(--red);
+}
+
+.out-service {
+  color: var(--orange);
+}
+
+.booking-btn {
+  text-decoration: none;
+  color: var(--white);
+  padding: 10px 30px;
+  background-color: var(--green);
+  border-radius: 10px;
+  border: none;
+}
+
+.booking-btn:hover {
+  background-color: var(--grey);
+  color: var(--white);
+}

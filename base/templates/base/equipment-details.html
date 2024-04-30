@@ -5,60 +5,7 @@
 Author: 
   - Anthony
 -->
-<style>
-    .equipment-name {
-        font-size: 40px;
-        color: grey;
-        font-weight: 100;
-        margin-bottom: 40px;
-    }
-    
-    .equipment-image {
-        height: 400px;
-        width: 600px;
-        border-radius: 20px;
-        border: 2px solid black;
-        margin-bottom: 20px;
-    }
 
-    .pick-up-info {
-        display: flex;
-        align-items: baseline;
-        gap: 50px;
-    }
-
-    .booking-date {
-        display: flex;
-        gap: 50px;
-        margin-bottom: 20px;
-    }
-
-    .available {
-        color: #AEEB8F;
-    }
-
-    .not-available {
-        color: red;
-    }
-
-    .out-service {
-        color: orange;
-    }
-
-    .booking-btn {
-        text-decoration: none;
-        color: white;
-        padding: 10px 30px;
-        background-color: #AEEB8F;
-        border-radius: 10px;
-        border: none;
-    }
-
-    .booking-btn:hover {
-        background-color: grey;
-        color: white;
-    }
-</style>
 <main>
     <!-- Add a form to create a new booking -->
     <h1>Equipment Details</h1>
@@ -93,17 +40,17 @@ Author:
     </div>
 </main>
 <script>
-    const status = document.getElementById("status");
+    let equipmentStatus = document.getElementById("status");
     const bookingBtns = document.getElementsByClassName("booking-btn");
     
-    if (status.textContent.trim() === "On Loan" || status.textContent.trim() === "Out of Service") {
-        status.classList.add(status.textContent.trim() === "On Loan" ? "not-available" : "out-service");
+    if (equipmentStatus.textContent.trim() === "On Loan" || equipmentStatus.textContent.trim() === "Out of Service") {
+        equipmentStatus.classList.add(equipmentStatus.textContent.trim() === "On Loan" ? "not-available" : "out-service");
         Array.from(bookingBtns).forEach(button => {
             button.style.backgroundColor = "grey";
             button.disabled = true;
         });
-    } else if (status.textContent.trim() === "Available") {
-        status.classList.add("available");
+    } else if (equipmentStatus.textContent.trim() === "Available") {
+        equipmentStatus.classList.add("available");
     }
 </script>
 {% endblock content %}
