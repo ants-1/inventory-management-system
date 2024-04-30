@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from .models import *
 from .forms import *
@@ -37,10 +38,10 @@ def loginaccount(request):
         if user is None:
             return render(request, 'base/login.html',
                         {'form':AuthenticationForm(),
-                         'error':'Username and password do not match'})
+                         'error':'Username and password invalid'})
         else:
             login(request, user)
-            return redirect('landing_page')
+            return redirect('equipment_list')
 
 
 def logoutaccount(request):
@@ -48,6 +49,7 @@ def logoutaccount(request):
     return redirect('landing_page')
 
 
+@login_required
 def edit_profile(request):
     return render(request, "base/edit-profile.html")
 
@@ -100,26 +102,29 @@ def equipment_details(request, id):
 
 # User pages
 
-
+@login_required
 def user_profile(request):
     return render(request, "base/user-profile.html")
 
 
+@login_required
 def user_alerts(request):
     return render(request, "base/user-alerts.html")
 
 
+@login_required
 def bookings(request):
     return render(request, "base/bookings.html")
 
 
 # Admin pages
 
-
+@login_required
 def admin_profile(request):
     return render(request, "base/admin-profile.html")
 
 
+@login_required
 def add_equipment(request):
     if request.method == "POST":
         form = AddEquipmentForm(request.POST)
@@ -131,6 +136,7 @@ def add_equipment(request):
     return render(request, "base/add-equipment.html", {"form": form})
 
 
+@login_required
 def edit_equipment(request, id):
     equipment = Equipment.objects.get(id=id)
     if request.method == "POST":
@@ -143,6 +149,7 @@ def edit_equipment(request, id):
     return render(request, "base/edit-equipment.html", {"form": form})
 
 
+@login_required
 def delete_equipment(request, id):
     equipment = Equipment.objects.get(id=id)
     if request.method == "POST":
@@ -151,13 +158,16 @@ def delete_equipment(request, id):
     return render(request, "base/delete-equipment.html", {"equipment": equipment})
 
 
+@login_required
 def edit_users(request):
     return render(request, "base/edit-users.html")
 
 
+@login_required
 def reports(request):
     return render(request, "base/reports.html")
 
 
+@login_required
 def approvals(request):
     return render(request, "base/approvals.html")
