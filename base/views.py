@@ -5,14 +5,11 @@ from .forms import *
 
 # Create your views here.
 
-
 def landing_page(request):
     return render(request, "base/landing-page.html")
 
-
 def navbar(request):
     return render(request, "navbar.html")
-
 
 def sign_up(request):
     return render(request, "base/sign-up.html")
