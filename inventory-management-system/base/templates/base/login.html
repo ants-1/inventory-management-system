@@ -1,12 +1,23 @@
 {% extends 'main.html' %} {% block content %}
 {% load static %}
 <!--
-  Co-Author: 
+  Author: 
   - Anthony
+  Co-Author:
+  - Alisha
 -->
 <main>
   <h1 class="login-title">Login</h1>
   <form class="login-form" method="POST" action="" onsubmit="return validateLogin()">
+
+    <!-- rendering the error message from 'views.py' -->
+    {% if error %}    <!-- only shows error message if error exists -->
+    <!-- render the error message in a bootstrap alert component -->
+      <div class="alert alert-danger mt-3" role="alert">
+      {{ error }}
+      </div>
+    {% endif %}
+
     {% csrf_token %}
     {{ form.as_p }}
     <div class="login-options">

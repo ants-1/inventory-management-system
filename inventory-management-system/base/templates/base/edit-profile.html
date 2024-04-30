@@ -1,7 +1,35 @@
-{% extends 'main.html' %}
+{% extends 'main.html' %} {% block content %}
+<!--
+Author: 
+  - Alisha
+-->
+<style>
+  .edit-user-form .form-label {
+    font-size: 20px;
+  }
 
-{% block content %}
+  .edit-user-form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+
+  textarea {
+    height: 100px;
+    width: 500px;
+    border-radius: 5px;
+  }
+</style>
+
 <main>
-    <h1>Edit Profile</h1>
+  <h1>Edit Profile</h1>
+  <form class="edit-user-form" method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <div class="signup-btn-section">
+      <a class="form-button" href="{% url 'user_profile' %}">Back</a>
+      <button type="submit" class="form-button">Save</button>
+    </div>
+  </form>
 </main>
 {% endblock content %}
