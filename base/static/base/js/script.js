@@ -1,3 +1,8 @@
+/* 
+Author:
+- Anthony
+*/
+
 // login.html scripts
 function validateLogin() {
   const username = document.getElementById("username").value;
