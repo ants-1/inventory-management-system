@@ -1,4 +1,7 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from .models import *
 from .forms import *
@@ -23,14 +26,39 @@ def navbar(request):
 
 def sign_up(request):
     page_title = "Sign Up"
-    return render(request, "base/sign-up.html", {"page_title": page_title})
+    if request.method == "POST":
+        form = AddUserForm(request.POST)
+        if form.is_valid():
+            form.save()
+            
+    else:
+        form = AddUserForm()
+
+    return render(request, "base/sign-up.html", {"form": form, "page_title": page_title})
 
 
-def login(request):
-    page_title = "Login"
-    return render(request, "base/login.html", {"page_title": page_title})
+def loginaccount(request):
+    if request.method == 'GET':
+        return render(request, 'base/login.html', {'form':AuthenticationForm})
+    else:
+        user = authenticate(request,
+                            username=request.POST['username'],
+                            password=request.POST['password'])
+        if user is None:
+            return render(request, 'base/login.html',
+                        {'form':AuthenticationForm(),
+                         'error':'Username and password invalid'})
+        else:
+            login(request, user)
+            return redirect('equipment_list')
 
 
+def logoutaccount(request):
+    logout(request)
+    return redirect('landing_page')
+
+
+@login_required
 def edit_profile(request):
     page_title = "Edit Profile"
     return render(request, "base/edit-profile.html", {"page_title": page_title})

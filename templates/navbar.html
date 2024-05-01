@@ -1,72 +1,122 @@
 {% load static %}
+
 <nav>
-  <div class="nav-left">
-    <a href="landing_page">
-      <img src={% static 'base/westminster-logo.png' %} class="logo"
-      style="height:50px; width:50px;" alt="Logo" />
-    </a>
-    <ul>
-      <li>
-        <a href={% url 'equipment_list' %}>Equipment</a>
-      </li>
-      <li>
-        <a href={% url 'login' %}>Login</a>
-      </li>
-      <li>
-        <a href={% url 'sign_up' %}>Register</a>
-      </li>
-      <!--
-        Logged in as User
+  <!-- need to add conditions for if logged in as User or Admin -->
+  {% if user.is_authenticated %}    <!-- user is logged in -->
+    <div class="nav-left">
+      <!-- logo -->
+      <a href="landing_page">
+        <img src={% static 'base/westminster-logo.png' %} class="logo" style="height:50px; width:50px;" alt="Logo" />
+      </a>
+      <ul>
         <li>
-            <a href="bookings">Bookings</a>
+          <a href={% url 'equipment_list' %}>Equipment</a>
+        </li>
+      </ul>
+    </div>
+    <div class="nav-right">
+      <ul>
+        <li>
+          <a href="#">
+            <img src={% static 'base/home-icon.png' %} class="nav-icon" alt="Home
+            icon" />
+          </a>
         </li>
         <li>
-            <a href="#">History</a>
-        </li>
-      -->
-      <!--
-        Logged in as Admin
-        <li>
-            <a href="add_equipment">Add Equipment</a>
+          <a href="#">
+            <img src={% static 'base/user-icon.png' %} class="nav-icon" alt="User icon" />
+          </a>
         </li>
         <li>
-            <a href="edit_equipment">Edit Equipment</a>
+          <a href="#">
+            <img src={% static 'base/alert-icon.png' %} class="nav-icon" alt="Alert icon" />
+          </a>
         </li>
         <li>
-            <a href="edit_users">Users</a>
+          <a href="{% url 'logout' %}">
+            <img src={% static 'base/exit-icon.png' %} class="nav-icon" alt="Exit icon" />
+          </a>
+        </li>
+      </ul>
+    </div>
+
+  {% else %}    <!-- user isn't logged in -->
+    <div class="nav-left">
+      <!-- logo -->
+      <a href="landing_page">
+        <img src={% static 'base/westminster-logo.png' %} class="logo" style="height:50px; width:50px;" alt="Logo" />
+      </a>
+      <ul>
+        <li>
+          <a href="{% url 'equipment_list' %}">Equipment</a>
         </li>
         <li>
-            <a href="reports">Reports</a>
+          <a href="{% url 'login' %}">Login</a>
         </li>
-      -->
-    </ul>
-  </div>
-  <div class="nav-right">
-    <ul>
+        <li>
+          <a href="{% url 'sign_up' %}">Register</a>
+        </li>
+      </ul>
+    </div>
+  {% endif %}
+
+
+
+
+  <!-- <ul> -->
+    <!--
+      Logged in as User
       <li>
-        <a href="#">
-          <img src={% static 'base/home-icon.png' %} class="nav-icon" alt="Home
-          icon" />
-        </a>
+          <a href="bookings">Bookings</a>
       </li>
       <li>
-        <a href="#">
-          <img src={% static 'base/user-icon.png' %} class="nav-icon" alt="User
-          icon" />
-        </a>
+          <a href="#">History</a>
+      </li>
+    -->
+    <!--
+      Logged in as Admin
+      <li>
+          <a href="add_equipment">Add Equipment</a>
       </li>
       <li>
-        <a href="#">
-          <img src={% static 'base/alert-icon.png' %} class="nav-icon"
-          alt="Alert icon" />
-        </a>
+          <a href="edit_equipment">Edit Equipment</a>
       </li>
       <li>
-        <a href="#">
-          <img src={% static 'base/exit-icon.png' %} class="nav-icon" alt="Exit
-          icon" />
-        </a>
+          <a href="edit_users">Users</a>
       </li>
-    </ul>
-  </div>
+      <li>
+          <a href="reports">Reports</a>
+      </li>
+    -->
+  <!-- </ul> -->
+
+<!-- <div class="nav-right">
+  <ul>
+    <li>
+      <a href="#">
+        <img src={% static 'base/home-icon.png' %} class="nav-icon" alt="Home
+        icon" />
+      </a>
+    </li>
+    <li>
+      <a href="#">
+        <img src={% static 'base/user-icon.png' %} class="nav-icon" alt="User
+        icon" />
+      </a>
+    </li>
+    <li>
+      <a href="#">
+        <img src={% static 'base/alert-icon.png' %} class="nav-icon"
+        alt="Alert icon" />
+      </a>
+    </li>
+    <li>
+      <a href="#">
+        <img src={% static 'base/exit-icon.png' %} class="nav-icon" alt="Exit
+        icon" />
+      </a>
+    </li>
+  </ul>
+</div> -->
+
 </nav>

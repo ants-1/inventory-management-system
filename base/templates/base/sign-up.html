@@ -1,75 +1,16 @@
-{% extends 'main.html' %} {% block content %}
+{% extends 'main.html' %}
+{% block content %}
 {% load static %}
 <!--
-  Co-Author: 
+  Author: 
   - Anthony
 -->
 
 <main>
   <h1 class="sign-up-title">Sign Up</h1>
-  <form class="sign-up-form" method="" action="">
-    <div class="form-group">
-      <label for="first-name" class="form-label">First Name</label>
-      <input
-        type="text"
-        name="first-name"
-        id="first-name"
-        class="form-input"
-        required
-      />
-    </div>
-    <div class="form-group">
-      <label for="last-name" class="form-label">Last Name</label>
-      <input
-        type="text"
-        name="last-name"
-        id="last-name"
-        class="form-input"
-        required
-      />
-    </div>
-    <div class="form-group">
-      <label for="email" class="form-label">Email Address</label>
-      <input type="email" name="email" id="email" class="form-input" required />
-    </div>
-    <div class="form-group">
-      <label for="role" class="form-label">Role Description</label>
-      <select name="role" id="role" class="form-input" required>
-        <option value="" disabled selected>Select Role</option>
-        <option value="student">Student</option>
-        <option value="admin">Admin</option>
-      </select>
-    </div>
-    <div class="form-group">
-      <label for="username" class="form-label">Create Username</label>
-      <input
-        type="text"
-        name="username"
-        id="username"
-        class="form-input"
-        required
-      />
-    </div>
-    <div class="form-group">
-      <label for="password" class="form-label">Create Password</label>
-      <input
-        type="password"
-        name="password"
-        id="password"
-        class="form-input"
-        required
-      />
-    </div>
-    <div class="form-group">
-      <label for="confirm-password" class="form-label">Re-type Password</label>
-      <input
-        type="password"
-        name="confirm-password"
-        id="confirm-password"
-        class="form-input"
-        required
-      />
-    </div>
+  <form class="sign-up-form" method="POST" action="">
+    {% csrf_token %}
+    {{ form.as_p }}
     <div class="signup-btn-section">
       <a class="form-button" href="landing_page">Cancel</a>
       <button type="submit" class="form-button">Create Account</button>
