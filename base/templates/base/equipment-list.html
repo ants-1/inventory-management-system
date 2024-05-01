@@ -13,7 +13,9 @@
       <button class="search-icon">🔎</button>
     </form>
     <!-- Admin only has access to Add button -->
+    {% if user.is_authenticated %}
     <a href="{% url 'add_equipment' %}"><button class="add">Add</button></a>
+    {% endif %}
     <!-- -->
   </div>
   <div class="filters hidden">
