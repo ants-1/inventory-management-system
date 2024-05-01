@@ -2,6 +2,12 @@ from django.db import models
 
 # Create your models here.
 
+"""
+Co-Authors:
+- Anthony
+- Alisha
+"""
+
 class User(models.Model):
     username = models.CharField(max_length=150)
     password = models.CharField(max_length=150, default="123password")

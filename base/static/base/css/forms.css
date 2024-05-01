@@ -68,6 +68,8 @@ Author:
 
 .edit-equipment-form p,
 .add-equipment-form p,
+.login-form p,
+.sign-up-form p,
 .form-button-section {
   display: flex;
   width: 500px;
@@ -76,14 +78,18 @@ Author:
 }
 
 .edit-equipment-form p label,
-.add-equipment-form p label {
+.add-equipment-form p label,
+.login-form p label,
+.sign-up-form p label {
   font-size: 20px;
   font-weight: 200;
   color: var(--grey);
 }
 
 .edit-equipment-form p input,
-.add-equipment-form p input {
+.add-equipment-form p input,
+.login-form p input,
+.sign-up-form p input {
   width: 300px;
   padding: 5px;
 }

@@ -1,6 +1,12 @@
 from django import forms
 from .models import *
 
+"""
+Co-Authors:
+- Anthony
+- Alisha
+"""
+
 class AddEquipmentForm(forms.ModelForm):
     class Meta:
         model = Equipment

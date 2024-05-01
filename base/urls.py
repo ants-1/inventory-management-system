@@ -1,7 +1,11 @@
 from django.urls import path
 from . import views
 
-
+"""
+Co-Authors:
+- Anthony
+- Alisha
+"""
 
 urlpatterns = [
     path('', views.landing_page, name='landing_page'),

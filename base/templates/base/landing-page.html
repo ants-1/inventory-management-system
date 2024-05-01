@@ -1,7 +1,6 @@
-{% extends 'main.html' %} {% block content %}
-{% load static %}
+{% extends 'main.html' %} {% block content %} {% load static %}
 <!--
-  Co-Author: 
+  Author: 
   - Anthony
 -->
 <main class="landing-page">
@@ -9,28 +8,36 @@
   <div>
     <div class="info">
       <div>
-        <div class="icon"></div>
+        <img src={% static 'base/sign-up-icon.png' %} class="icon" alt="Search
+        icon">
         <p>Sign up</p>
       </div>
       <div>
-        <div class="icon"></div>
+        <img src={% static 'base/search-icon.jpg' %} class="icon" alt="Search
+        icon">
         <p>Search our extensive database of equipment available</p>
       </div>
       <div>
-        <div class="icon"></div>
+        <img src={% static 'base/booking-icon.png' %} class="icon" alt="Search
+        icon">
         <p>Book or reserve the items you would like to borrow</p>
       </div>
       <div>
-        <div class="icon"></div>
+        <img src={% static 'base/approved-icon.png' %} class="icon" alt="Search
+        icon">
         <p>Once approved, collect your items or wait for delivery</p>
       </div>
     </div>
     <div class="extra-info">
-        <div class="icon"></div>
-        <div>
-            <p>We stock an extensive and varied database of equipment... from laptops & PCs to furniture and more...</p>
-            <a href="{% url 'equipment_list' %}">View Equipment</a>
-        </div>
+      <img src={% static 'base/stock.png' %} class="icon" alt="Search
+      icon">
+      <div>
+        <p>
+          We stock an extensive and varied database of equipment... from laptops
+          & PCs to furniture and more...
+        </p>
+        <a href="{% url 'equipment_list' %}">View Equipment</a>
+      </div>
     </div>
   </div>
 </main>

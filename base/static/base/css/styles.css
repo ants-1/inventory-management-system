@@ -1,5 +1,5 @@
 /* 
-Co-Authors:
+Author:
 - Anthony
 */
 
@@ -144,7 +144,7 @@ li {
 }
 
 .landing-page .icon {
-  background-color: var(--grey);
+  background-color: var(--white);
   width: 150px;
   height: 150px;
 }

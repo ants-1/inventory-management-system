@@ -147,11 +147,14 @@ def admin_profile(request):
 def add_equipment(request):
     page_title = "Add Equipment"
 
+    # If the request method is POST then process the form data
     if request.method == "POST":
         form = AddEquipmentForm(request.POST)
+        # If the form data is valid then save it and redirect to equipment list
         if form.is_valid():
             form.save()
             return redirect("equipment_list")
+    # Else the request method is GET then display a blank form
     else:
         form = AddEquipmentForm()
     return render(
@@ -161,13 +164,17 @@ def add_equipment(request):
 
 def edit_equipment(request, id):
     page_title = "Edit Equipment"
+    # Retrieve the equipment object to edit based on the provided ID
     equipment = Equipment.objects.get(id=id)
 
+    # If the request method is POST then process the form data
     if request.method == "POST":
         form = EditEquipmentForm(request.POST, instance=equipment)
+        # If the form data is valid then save it and redirect to equipment list
         if form.is_valid():
             form.save()
             return redirect("equipment_list")
+    # Else the request method is GET then display a blank form
     else:
         form = EditEquipmentForm(instance=equipment)
     return render(
@@ -177,11 +184,14 @@ def edit_equipment(request, id):
 
 def delete_equipment(request, id):
     page_title = "Delete Equipment"
+    # Retrieve the equipment object to edit based on the provided ID
     equipment = Equipment.objects.get(id=id)
 
+    # If the request method is POST then delete the equipment and redirect to equipment list
     if request.method == "POST":
         equipment.delete()
         return redirect("equipment_list")
+     # If the request method is GET then display the confirmation page 
     return render(
         request,
         "base/delete-equipment.html",
