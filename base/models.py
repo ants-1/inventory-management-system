@@ -27,7 +27,7 @@ class Admin(models.Model):
     reservation_approval = models.ManyToManyField('Reservation', related_name='approved_by_admin', blank=True)
 
     def __str__(self):
-        return self.name
+        return f"Admin: {self.first_name} {self.last_name} ({self.username})"
 
 class Equipment(models.Model):
     name = models.CharField(max_length=254, default="N/A")
@@ -46,7 +46,7 @@ class Equipment(models.Model):
     availability = models.ManyToManyField(User, related_name='reserved_equipment', blank=True)
 
     def __str__(self):
-        return self.name
+        return f"Equipment: {self.name}"
 
 class Reservation(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -58,7 +58,7 @@ class Reservation(models.Model):
     rejection_reason = models.CharField(max_length=254)
 
     def __str__(self):
-        return self.name
+        return f"Reservation: {self.user.first_name} {self.user.last_name} - {self.equipment.name}"
     
 class Booking(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -68,4 +68,4 @@ class Booking(models.Model):
     return_date = models.DateField()
 
     def __str__(self):
-        return self.name
+        return f"Booking: {self.user.first_name} {self.user.last_name} - {self.equipment.name}"
