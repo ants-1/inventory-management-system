@@ -3,5 +3,18 @@
 {% block content %}
 <main>
     <h1>Admin Alerts</h1>
+    
+    <!--admin alerts are displayed here -->
+    <div class="admin-alerts">
+        {% if admin_alerts %}
+            <ul>
+                {% for alert in admin_alerts %}
+                    <li>{{ alert.message }} - {{ alert.timestamp }}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No alerts!</p>
+        {% endif %}
+    </div>
 </main>
 {% endblock content %}
