@@ -31,7 +31,7 @@ def sign_up(request):
         form = AddUserForm(request.POST)
         if form.is_valid():
             form.save()
-            
+            return redirect('landing_page')
     else:
         form = AddUserForm()
 
