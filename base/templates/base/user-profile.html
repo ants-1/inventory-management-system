@@ -1,7 +1,49 @@
 {% extends 'main.html' %}
 
+ <!-- Added by: Himani -->
+
 {% block content %}
 <main>
     <h1>User Profile</h1>
+    
+    <!-- This displays User Information -->
+    <div>
+        <h2>User Information</h2>
+        <p>Username: {{ user.username }}</p>
+        <p>Email: {{ user.email }}</p>
+        
+    </div>
+
+    <!-- This is the Edit Profile Button -->
+    <a href="{% url 'edit-profile' %}" class="btn btn-primary">Edit Profile</a>
+
+    <!-- User's Bookings -->
+    <div>
+        <h2>My Bookings</h2>
+        
+        <!-- This displayed a list of the user's bookings -->
+        <ul>
+            {% for booking in user.bookings %}
+                <li>{{ booking.equipment.name }} - {{ booking.start_date }} to {{ booking.end_date }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <!-- User's Alerst/Notifications -->
+    <div>
+        <h2>Alerts</h2>
+        {% if user.alerts %}
+            <ul>
+                {% for alert in user.alerts %}
+                    <li>{{ alert.message }}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No alerts at the moment.</p>
+        {% endif %}
+    </div>
+    
+   
 </main>
 {% endblock content %}
+
