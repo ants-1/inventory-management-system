@@ -1,7 +1,24 @@
 {% extends 'main.html' %}
 
+<!--
+Author: Himani
+-->
+
 {% block content %}
 <main>
     <h1>User Alerts</h1>
+    
+    <!-- this displays user alerts -->
+    <div class="user-alerts">
+        {% if user_alerts %}
+            <ul>
+                {% for alert in user_alerts %}
+                    <li>{{ alert.message }} - {{ alert.timestamp }}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No alerts found.</p>
+        {% endif %}
+    </div>
 </main>
 {% endblock content %}
